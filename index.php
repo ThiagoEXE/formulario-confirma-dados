@@ -18,16 +18,16 @@
         <h1>Cadastro</h1>
     </div>
     <div class="container">
-        <form id="cadastro" action="confirma-dados.php" method="post">
+        <form id="cadastro" method="post">
             <input type="text" id="nomeForm" name="nomeForm" placeholder="Nome" required>
-            <input type="email" id="emailForm" name="emailForm"placeholder="E-mail" required>
+            <input type="email" id="emailForm" name="emailForm" placeholder="E-mail" required>
             <input type="text" id="telefoneForm" name="telefoneForm" placeholder="Telefone" required>
-            <input type="submit" id="enviar" value="Enviar">
+            <button type="submit" class="btn btn-success" data-toggle="modal" data-target="#exampleModal">
+                Cadastrar
+            </button>
+            <!--<input type="submit" id="enviar" value="Enviar">-->
         </form>
-        <!-- Button trigger modal -->
-        <button type="submit" class="btn btn-success" data-toggle="modal" data-target="#exampleModal" onclick=pegaValor();>
-            Cadastrar
-        </button>
+        <!--Button trigger modal -->
 
         <!-- Modal -->
         <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
@@ -41,9 +41,9 @@
                     </div>
                     <div class="modal-body">
                         <form id="confirmadados" action="confirma-dados.php" method="post">
-                            <input type="text" id="nome" placeholder="Nome" required>
-                            <input type="email" id="email" placeholder="E-mail" required>
-                            <input type="text" id="telefone" placeholder="Telefone" required>
+                            <input type="text" id="nome" required value="nome">
+                            <input type="email" id="email" value="email" required>
+                            <input type="text" id="telefone" value="telefone" required>
                             <input type="submit" class="btn btn-primary" value="Enviar">
                         </form>
                     </div>
@@ -60,18 +60,23 @@
         var nome = document.getElementById('nomeForm');
         var email = document.getElementById('emailForm');
         var telefone = document.getElementById('telefoneForm');
-        var form = document.getElementById('confirmadados');
-        var confirmaNome = document.getElementById('nome');
-        var confirmaEmail = document.getElementById('email');
-        var confirmaTelefone = document.getElementById('telefone');
 
-        form.addEventListener('submit', function(e) {
-            confirmaNome.value = nome;
-            confirmaEmail.value = email;
-            confirmaTelefone.value = telefone;
 
-            //alert(nome.value + "\n" + email.value + "\n" + telefone.value);
+       /** form.addEventListener('submit', function(e) {
+
+            alert(nome.value + "\n" + email.value + "\n" + telefone.value);
             e.preventDefault(); //impede o envio do form
+        });*/
+        form.addEventListener('submit', function(e) {
+
+            var form = document.getElementById('confirmadados');
+            var confirmaNome = document.getElementById('nome');//.value = nome;
+            confirmaNome.value = nome.value;
+            var confirmaEmail = document.getElementById('email');//.value = email;
+            confirmaEmail.value = email.value;
+            var confirmaTelefone = document.getElementById('telefone');//.value = telefone;
+            confirmaTelefone.value = telefone.value;
+            e.preventDefault();
         });
     </script>
 </body>
